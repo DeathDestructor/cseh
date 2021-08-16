@@ -14,10 +14,14 @@ def main():
 
     (options, args) = parser.parse.args()
     
+    tgtHost = options.tgtHost
+    tgtPorts = str(options.tgtPort).split(',')
+    
     if (tgtHost == None) | (tgtPorts[0]):
         print(parser.usage)
         exit(0)
-        
+    
+
     #portScan(tgtHost, tgtPorts)
 
 main()
