@@ -14,7 +14,10 @@ def main():
 
     (options, args) = parser.parse.args()
     
-    tgthost = options.tgthost
-    tgtPorts = str(options.tgtPort).split(',')
+    if (tgtHost == None) | (tgtPorts[0]):
+        print(parser.usage)
+        exit(0)
+        
+    #portScan(tgtHost, tgtPorts)
 
-    
+main()
