@@ -4,6 +4,28 @@ from socket import *
 import optparse
 from threading import *
 
+
+
+def portScan(tgtHost, tgtPorts):
+    try:
+        tgtIP = gethostbyname(tgtHost) 
+    except:
+        print(('Unknown Host %s ') %tgtHost)
+        
+    try:
+        tgtName = gethostnamebyaddr(tgtIP)
+        print('[+] Scan Results for:  ' + tgtName[0])
+    except:
+        print('[+] Scan Results for: ' + tgtIP)
+        
+    setdefaulttimeout(1)
+    
+    for tgtPort in tgtPorts:
+        t = Thread(target = connScan, args = (tgtHost, int(tgtPort)))
+        t.start()
+    
+
+
 def main():
 
     parser = optparse.OptionParser('Usage: ' + '-H <target host> -p <target ports>')
@@ -24,4 +46,5 @@ def main():
 
     #portScan(tgtHost, tgtPorts)
 
-main()
+if __name__ == '__main__':
+    main()
